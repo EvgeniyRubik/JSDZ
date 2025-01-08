@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Необязательное задание.
+
+Выполнить все задачи в теге script. Комментарии, в которых написаны задачи, не
+стирать, код с решением задачи пишем под комментарием.
+-->
+
+<p class="super_element">Привет</p>
+
+<img src="https://i.pinimg.com/236x/2d/b9/5a/2db95ab719ce2e1dedc08322f390c649.jpg" alt="">
+<img src="https://i.pinimg.com/236x/de/76/19/de76199b55ae4b091af0157dbcba81c2.jpg" alt="">
+<img src="https://i.pinimg.com/236x/8b/7c/f0/8b7cf064a0754e2a2b4a840f9b223999.jpg" alt="">
+<img src="https://i.pinimg.com/236x/69/9d/a5/699da57394c7add54c5f1b7219c9473d.jpg" alt="">
+<img src="https://i.pinimg.com/236x/b1/1a/96/b11a963df8a3b77ff5e01fa7d8fc029d.jpg" alt="">
+<img src="https://i.pinimg.com/236x/a7/0f/2a/a70f2a8456b7ee4d6a7d0e27ed7733f6.jpg" alt="">
+<img src="https://i.pinimg.com/236x/29/d7/0e/29d70ead7a59fc216d4bd500a5318ed6.jpg" alt="">
+
+<br>
+
+<button>Кнопка</button>
+<button class="super_element">Кнопка с классом btn</button>
+<button>Кнопка</button>
+
+<br>
+
+<textarea></textarea>
+
+<br>
+
+<ul>
+  <li>
+    <button>Кнопка 1</button>
+  </li>
+  <li>
+    <button>Кнопка 2</button>
+  </li>
+  <li>
+    <button>Кнопка 3</button>
+  </li>
+  <li>
+    <button>Кнопка 4</button>
+  </li>
+</ul>
+
+<script>
+  "use strict";
+
+  /*
+  1. Необходимо вывести сообщение в консоль "все теги прогрузились", когда все
+  теги будут созданы браузером.
+  */
+
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log("все теги прогрузились");
+  });
+
+  /*
+  2. Необходимо вывести сообщение в консоль "страница загрузилась", когда все
+  ресурсы страницы будут загружены.
+  */
+
+  window.addEventListener("load", () => {
+    console.log("страница загрузилась");
+  });
+
+
+
+  /*
+  3. При клике на какой-либо тег на странице в консоль должно выводиться
+  сообщение наподобие:
+  Класс "super_element" присутствует в элементе "div".
+  сообщение должно определять присутствует или отсутствует класс "super_element"
+  у элемента, а также выводить в нижнем регистре верный тег в данной строке, по
+  которому был совершен клик.
+  Необходимо использовать делегирование.
+  */
+
+  document.onclick = function (event) {
+    let target = event.target; // где был клик?
+    if (target.classList.contains("super_element")) {
+      console.log(`Класс "super_element" присутствует в элементе "${target.tagName}".`);
+    } else {
+      console.log(`Класс "super_element" отсутствует в элементе "${target.tagName}".`);
+    }
+  };
+
+  /*
+  4. Сделайте, чтобы при наведении на textarea в консоли появлялось сообщение:
+  "Вы навели на textarea."
+   */
+
+  const textareaTarget = document.querySelector("textarea");
+  textareaTarget.addEventListener('mouseover', (event) => {
+    console.log("Вы навели на textarea.");
+  });
+
+  /*
+  5. Необходимо повесить событие клика на тег ul. В обработчике события в
+  консоль необходимо выводить текст, который записан внутри элемента кнопки,
+  по которой был произведен клик.
+  Если клик был не по кнопке, то ничего выводить не нужно.
+  Необходимо использовать делегирование.
+   */
+
+  const ulTarget = document.querySelector("ul");
+  ulTarget.addEventListener('click', (event) => {
+    let target = event.target;
+    if (target.tagName != 'BUTTON')
+    return;
+    console.log(target.innerText);
+  });
+
+
+  /*
+  6. Вопрос: Почему в console.log пишется сначала текст из 5 задания и только
+  потом выводится текст из 3 задания, если мы кликаем по кнопкам в ul?
+  Ответ необходимо написать здесь же, под этим комментарием, своими словами.
+  */
+
+  // Потому что событие клика срабатывает на всплытие, т.е. сначала срабатывает на самом элементе, 
+  // на котором был клик, а уже потом на его родителе.
+
+  /*
+  7. С помощью JS необходимо изменить цвет заднего фона каждого второго тега li.
+   */
+
+  
+  const liTarget = document.querySelectorAll("li");
+  let liTargetI = 0;
+  liTarget.forEach((elem) => {
+    if (liTargetI % 2 == 0) {
+      elem.style.backgroundColor = 'red';
+    }
+    liTargetI += 1;
+  });
+
+
+</script>
+</body>
+</html>
